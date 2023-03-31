@@ -96,9 +96,9 @@ import random #for random numbers
 import string #for string
 
 #Importing files
-import player #importing player.py
-import enemy #importing enemy.py
-import item #importing item.py
+from classes.player import player
+from classes.enemy import enemy
+from classes.item import item
 
 
 #made by @Loocist23 on github
@@ -147,112 +147,26 @@ def fight(player, enemy):
 ########################################################################################################################################################
 
 #main
-#function to create a new player
-def new_player():
-    name = input("Your name: ")
-    player = player(name)
-    return player
 
-#function to load a player
-def load_player():
-    name = input("Your name: ")
-    player = player(name)
-    #load player stats from a file
-    return player
-
-#function to save a player
-def save_player(player):
-    #save player stats to a file
-    return
-
-#function to show the main menu
-def main_menu():
+#menu to create a new game or load a game or exit or credits or help
+def menu():
     print("Welcome to the game!")
     print("1. New game")
     print("2. Load game")
     print("3. Exit")
+    print("4. Credits")
+    print("5. Help")
     choice = input("Your choice: ")
     if choice == "1":
-        player = new_player()
-        return player
+        new_game()
     elif choice == "2":
-        player = load_player()
-        return player
+        load_game()
     elif choice == "3":
-        return
-    else:
-        print("Invalid input!")
-        main_menu()
-
-#function to show the game menu
-def game_menu(player):
-    print("1. Show stats")
-    print("2. Show inventory")
-    print("3. Save game")
-    print("4. Exit")
-    choice = input("Your choice: ")
-    if choice == "1":
-        player.show_stats()
-        game_menu(player)
-    elif choice == "2":
-        player.show_inventory()
-        game_menu(player)
-    elif choice == "3":
-        save_player(player)
-        game_menu(player)
+        exit()
     elif choice == "4":
-        return
-    else:
-        print("Invalid input!")
-        game_menu(player)
-
-#function to show the forest
-def forest():
-    print("Forest:")
-    print("1. Fight")
-    print("2. Back")
-    choice = input("Your choice: ")
-    if choice == "1":
-        enemy = enemy("Goblin", 100, 10, 10, 10, 1, ["Sword", "Shield", "Potion"])
-        fight(player, enemy)
-        forest()
-    elif choice == "2":
-        return
-    else:
-        print("Invalid input!")
-        forest()
-
-
-#function to show the map
-def show_map():
-    print("Map:")
-    print("1. Forest")
-    print("2. Cave ''Coming soon!'")
-    print("3. Desert ''Coming soon!'")
-    print("4. Mountain ''Coming soon!'")
-    print("5. Back")
-    choice = input("Your choice: ")
-    if choice == "1":
-        forest()
+        credits()
     elif choice == "5":
-        return
+        help()
     else:
         print("Invalid input!")
-        show_map()
-
-
-########################################################################################################################################################
-
-#main code
-
-#show the main menu
-player = main_menu()
-
-#show the game menu
-game_menu(player)
-
-#show the map
-show_map()
-
-#made by @Loocist23 on github
-########################################################################################################################################################
+        menu()
