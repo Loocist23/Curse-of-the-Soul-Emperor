@@ -43,3 +43,35 @@ class player:
         self.defense += 10
         self.speed += 10
         self.xp_to_next_level += 100
+    
+    def add_xp(self, xp):
+        self.xp += xp
+        if self.xp >= self.xp_to_next_level:
+            self.level_up()
+    
+    def add_item(self, item):
+        self.inventory.append(item)
+    
+    def remove_item(self, item):
+        self.inventory.remove(item)
+    
+    def show_inventory(self):
+        print("Your inventory:")
+        for i in self.inventory:
+            print(i)
+    
+    def show_stats(self):
+        print("Your stats:")
+        print("Health: " + str(self.health))
+        print("Attack: " + str(self.attack))
+        print("Defense: " + str(self.defense))
+        print("Speed: " + str(self.speed))
+        print("Level: " + str(self.level))
+        print("XP: " + str(self.xp) + "/" + str(self.xp_to_next_level))
+    
+    def show_all(self):
+        print("Your name is " + self.name)
+        self.show_stats()
+        self.show_inventory()
+    
+    
