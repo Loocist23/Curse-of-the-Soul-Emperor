@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 #a simple text based game
 #with rpg elements
 #and a story that is going to be the story of my next game
