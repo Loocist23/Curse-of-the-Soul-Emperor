@@ -165,3 +165,45 @@ class item:
 
 #made by @Loocist23 on github
 ########################################################################################################################################################
+
+#functions
+def fight(player, enemy):
+    print("You are fighting " + enemy.name)
+    while player.health > 0 and enemy.health > 0:
+        print("Your health: " + str(player.health))
+        print(enemy.name + "'s health: " + str(enemy.health))
+        print("What do you want to do?")
+        print("1. Attack")
+        print("2. Defend")
+        print("3. Run")
+        choice = input("Your choice: ")
+        if choice == "1":
+            player.attack(enemy)
+            enemy.defend(player)
+        elif choice == "2":
+            player.defend(enemy)
+            enemy.attack(player)
+        elif choice == "3":
+            #there is a small chance that you will not be able to run away
+            if random.randint(0, 100) > random.randint(0, 50):
+                print("You ran away!")
+                break
+            else:
+                print("You couldn't run away!")
+                enemy.attack(player)
+        else:
+            print("Invalid input!")
+        if enemy.health <= 0:
+            print("You won!")
+            print("You got " + enemy.drop_item())
+            player.add_item(enemy.drop_item())
+            player.add_xp(10)
+            break
+        elif player.health <= 0:
+            print("You lost!")
+            break
+        else:
+            continue
+
+#made by @Loocist23 on github
+########################################################################################################################################################
