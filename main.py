@@ -153,16 +153,26 @@ def fight(player, enemy):
 import json
 import shelve
 
+import csv
+
+import csv
+
 def save_player_data(player, filename):
-    with shelve.open(filename) as db:
-        db['player'] = player
+    with open(filename, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(player.__dict__.keys())
+        writer.writerow(player.__dict__.values())
+
 
 
 def load_player_data(filename):
-    with shelve.open(filename) as db:
-        player = db['player']
-        print(player.name)
-    return player
+    with open(filename, 'r') as f:
+        reader = csv.DictReader(f)
+        player_data = next(reader)
+        player_obj = player(**player_data) # renommer la variable pour éviter la confusion
+        print(player_obj.name, player_obj.health, player_obj.attack, player_obj.defense, player_obj.speed, player_obj.level, player_obj.xp, player_obj.xp_to_next_level, player_obj.inventory, player_obj.speciality, player_obj.competence_points)
+        return player_obj
+
 
 
 
@@ -170,10 +180,9 @@ def load_player_data(filename):
 def new_game():
     print("What is your name?")
     name = input("Your name: ")
-    player1 = player(name)
-    save_player_data(player, 'player_data.db')
+    player1 = player(name, 100, 10, 10, 10, 1, 0, 100, [], "none", 0)
+    save_player_data(player1, 'player_data.csv')
     print("Hello " + player1.name)
-    
 
 
 #credits function
@@ -194,7 +203,7 @@ def menu():
     if choice == "1":
         new_game()
     elif choice == "2":
-        load_player_data('player_data.db')
+        load_player_data('player_data.csv')
     elif choice == "3":
         exit()
     elif choice == "4":

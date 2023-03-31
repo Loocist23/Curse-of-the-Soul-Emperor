@@ -15,8 +15,18 @@ class player:
     competence_points = 0
 
     #player functions
-    def __init__(self, name):
+    def __init__(self, name, health, attack, defense, speed, level, xp, xp_to_next_level, inventory, speciality, competence_points):
         self.name = name
+        self.health = health
+        self.attack = attack
+        self.defense = defense
+        self.speed = speed
+        self.level = level
+        self.xp = xp
+        self.xp_to_next_level = xp_to_next_level
+        self.inventory = inventory
+        self.speciality = speciality
+        self.competence_points = competence_points
 
     def attack(self, enemy):
         enemy.health -= self.attack
