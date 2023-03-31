@@ -1,9 +1,10 @@
 """
 -*- coding: utf-8 -*-
-#a simple text based game
-#with rpg elements
-#and a story that is going to be the story of my next game
-#but this time it is going to be a text based game
+presentation of the game
+a simple text based game
+with rpg elements
+and a story that is going to be the story of my next game
+but this time it is going to be a text based game
 
 
 
@@ -27,6 +28,63 @@ you asked her if she is a NPC and she told you the exact same thing
 so you imediately started to search for the other people
 
 that's all for now
+i will add more story later
+
+type of enemies:
+- goblin
+- skeleton
+- zombie
+- spider
+- wolf
+- bear
+- dragon
+- demon
+- angel
+
+type of items:
+- weapon
+- armor
+- potion
+- key
+- quest item
+
+type of bosses:
+- goblin king
+- skeleton king
+- zombie king
+- spider queen
+- wolf king
+- bear king
+- dragon king
+- demon king
+- god king
+
+special enemies(ultra rare):
+- Azazel
+- Lucifer
+- Jesus
+- Mary
+- Adam
+- Eve
+- Noah
+- Abraham
+- Moses
+- David
+- Solomon
+- Elijah
+- Elisha
+- Isaiah
+- Jeremiah
+- Ezekiel
+
+and more
+
+special bosses(ultra ultra rare):
+- God
+- Devil
+
+and more
+
 """
 
 #made by @Loocist23 on github
