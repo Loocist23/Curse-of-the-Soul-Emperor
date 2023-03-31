@@ -3,14 +3,16 @@
 #with rpg elements
 #and a story that is going to be the story of my next game
 #but this time it is going to be a text based game
-#made by @Loocist23 on github
 
+#made by @Loocist23 on github
 ########################################################################################################################################################
 
 #Imports
 import random #for random numbers
 import string #for string
 
+
+#made by @Loocist23 on github
 ########################################################################################################################################################
 
 #player class
@@ -81,7 +83,7 @@ class player:
         self.show_stats()
         self.show_inventory()
     
-
+#made by @Loocist23 on github
 ########################################################################################################################################################
 
 #enemy class
@@ -134,5 +136,5 @@ class enemy:
         self.show_stats()
         print("Drop: " + self.drop_item())
     
-
+#made by @Loocist23 on github
 ########################################################################################################################################################
