@@ -94,6 +94,8 @@ and more
 #Imports
 import random #for random numbers
 import string #for string
+import pickle
+
 
 #Importing files
 from classes.player import player
@@ -148,6 +150,38 @@ def fight(player, enemy):
 
 #main
 
+import json
+import shelve
+
+def save_player_data(player, filename):
+    with shelve.open(filename) as db:
+        db['player'] = player
+
+
+def load_player_data(filename):
+    with shelve.open(filename) as db:
+        player = db['player']
+        print(player.name)
+    return player
+
+
+
+#new game function
+def new_game():
+    print("What is your name?")
+    name = input("Your name: ")
+    player1 = player(name)
+    save_player_data(player, 'player_data.db')
+    print("Hello " + player1.name)
+    
+
+
+#credits function
+def credits():
+    print("Made by @Loocist23 on github")
+
+
+
 #menu to create a new game or load a game or exit or credits or help
 def menu():
     print("Welcome to the game!")
@@ -160,7 +194,7 @@ def menu():
     if choice == "1":
         new_game()
     elif choice == "2":
-        load_game()
+        load_player_data('player_data.db')
     elif choice == "3":
         exit()
     elif choice == "4":
@@ -170,3 +204,5 @@ def menu():
     else:
         print("Invalid input!")
         menu()
+
+menu()
