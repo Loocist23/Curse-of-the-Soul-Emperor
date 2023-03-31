@@ -1,8 +1,33 @@
-#-*- coding: utf-8 -*-
+"""
+-*- coding: utf-8 -*-
 #a simple text based game
 #with rpg elements
 #and a story that is going to be the story of my next game
 #but this time it is going to be a text based game
+
+
+
+a litle bit of story:
+so one day you woke up and you were in a house that you didn't know
+first you thought that you were dreaming but then you realized that you were not
+you went outside and you saw a lot of monsters
+so you reentered the house and you saw a sword on the table
+you took it and you started to search for equipment
+you found a broken shield and a rusty helmet
+you took them and you went outside again
+at first the light was blinding but then you got used to it
+you saw a litle girl and you asked her what happened and where you are
+she told you 'What happened? You are blind ? or you are deaf ? or you are dumb ?'
+you asked her again and she told you that you were in a dungeon
+you asked her how you can get out and she told you that you have to kill the boss
+you asked her if there is other people in the dungeon and she told you that there is
+you asked her where they are and she told you that they are in the middle of the dungeon
+thats when you realized that you are in a game
+you asked her if she is a NPC and she told you the exact same thing
+so you imediately started to search for the other people
+
+that's all for now
+"""
 
 #made by @Loocist23 on github
 ########################################################################################################################################################
@@ -204,31 +229,6 @@ def fight(player, enemy):
             break
         else:
             continue
-
-#made by @Loocist23 on github
-########################################################################################################################################################
-"""
-a litle bit of story:
-so one day you woke up and you were in a house that you didn't know
-first you thought that you were dreaming but then you realized that you were not
-you went outside and you saw a lot of monsters
-so you reentered the house and you saw a sword on the table
-you took it and you started to search for equipment
-you found a broken shield and a rusty helmet
-you took them and you went outside again
-at first the light was blinding but then you got used to it
-you saw a litle girl and you asked her what happened and where you are
-she told you 'What happened? You are blind ? or you are deaf ? or you are dumb ?'
-you asked her again and she told you that you were in a dungeon
-you asked her how you can get out and she told you that you have to kill the boss
-you asked her if there is other people in the dungeon and she told you that there is
-you asked her where they are and she told you that they are in the middle of the dungeon
-thats when you realized that you are in a game
-you asked her if she is a NPC and she told you the exact same thing
-so you imediately started to search for the other people
-
-that's all for now
-"""
 
 #made by @Loocist23 on github
 ########################################################################################################################################################
