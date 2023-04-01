@@ -95,6 +95,7 @@ and more
 import random #for random numbers
 import string #for string
 import pickle
+import csv
 
 
 #Importing files
@@ -119,7 +120,7 @@ def fight(player, enemy):
         choice = input("Your choice: ")
         if choice == "1":
             player.attack(enemy)
-            enemy.defend(player)
+            enemy.attack(player)
         elif choice == "2":
             player.defend(enemy)
             enemy.attack(player)
@@ -150,13 +151,7 @@ def fight(player, enemy):
 
 #main
 
-import json
-import shelve
-
-import csv
-
-import csv
-
+#save player data
 def save_player_data(player, filename):
     with open(filename, 'w', newline='') as f:
         writer = csv.writer(f)
@@ -164,13 +159,12 @@ def save_player_data(player, filename):
         writer.writerow(player.__dict__.values())
 
 
-
+#load player data
 def load_player_data(filename):
     with open(filename, 'r') as f:
         reader = csv.DictReader(f)
         player_data = next(reader)
         player_obj = player(**player_data) # renommer la variable pour éviter la confusion
-        print(player_obj.name, player_obj.health, player_obj.attack, player_obj.defense, player_obj.speed, player_obj.level, player_obj.xp, player_obj.xp_to_next_level, player_obj.inventory, player_obj.speciality, player_obj.competence_points)
         return player_obj
 
 
@@ -183,6 +177,7 @@ def new_game():
     player1 = player(name, 100, 10, 10, 10, 1, 0, 100, [], "none", 0)
     save_player_data(player1, 'player_data.csv')
     print("Hello " + player1.name)
+    return player1
 
 
 #credits function
@@ -190,28 +185,54 @@ def credits():
     print("Made by @Loocist23 on github")
 
 
-
-#menu to create a new game or load a game or exit or credits or help
-def menu():
-    print("Welcome to the game!")
-    print("1. New game")
-    print("2. Load game")
-    print("3. Exit")
-    print("4. Credits")
-    print("5. Help")
+#game function
+def game(player1):
+    print("Hello " + player1.name)
+    print("What do you want to do?")
+    print("1. Fight")
+    print("2. Inventory")
+    print("3. Stats")
+    print("4. Save")
+    print("5. Exit")
     choice = input("Your choice: ")
     if choice == "1":
-        new_game()
+        enemy1 = enemy("goblin")
+        fight(player1, enemy1)
     elif choice == "2":
-        load_player_data('player_data.csv')
+        player1.show_inventory()
     elif choice == "3":
-        exit()
+        player1.show_stats()
     elif choice == "4":
-        credits()
+        save_player_data(player1, 'player_data.csv')
     elif choice == "5":
-        help()
+        print("Bye!")
+        exit()
     else:
         print("Invalid input!")
-        menu()
 
-menu()
+
+
+
+#made by @Loocist23 on github
+########################################################################################################################################################
+
+#main
+print("Welcome to the game!")
+print("What do you want to do?")
+print("1. New game")
+print("2. Credits")
+print("3. Exit")
+choice = input("Your choice: ")
+if choice == "1":
+    player1 = new_game()
+elif choice == "2":
+    credits()
+elif choice == "3":
+    exit()
+else:
+    print("Invalid input!")
+
+while True:
+    game(player1)
+
+
