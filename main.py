@@ -90,14 +90,18 @@ and more
 #made by @Loocist23 on github
 ########################################################################################################################################################
 
+
 #Imports
 import random #for random numbers
 import string #for string
+import pickle
+import csv
+
 
 #Importing files
-import player #importing player.py
-import enemy #importing enemy.py
-import item #importing item.py
+from classes.player import player
+from classes.enemy import enemy
+from classes.item import item
 
 
 #made by @Loocist23 on github
@@ -116,7 +120,7 @@ def fight(player, enemy):
         choice = input("Your choice: ")
         if choice == "1":
             player.attack(enemy)
-            enemy.defend(player)
+            enemy.attack(player)
         elif choice == "2":
             player.defend(enemy)
             enemy.attack(player)
@@ -146,112 +150,89 @@ def fight(player, enemy):
 ########################################################################################################################################################
 
 #main
-#function to create a new player
-def new_player():
+
+#save player data
+def save_player_data(player, filename):
+    with open(filename, 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(player.__dict__.keys())
+        writer.writerow(player.__dict__.values())
+
+
+#load player data
+def load_player_data(filename):
+    with open(filename, 'r') as f:
+        reader = csv.DictReader(f)
+        player_data = next(reader)
+        player_obj = player(**player_data) # renommer la variable pour éviter la confusion
+        return player_obj
+
+
+
+
+#new game function
+def new_game():
+    print("What is your name?")
     name = input("Your name: ")
-    player = player(name)
-    return player
+    player1 = player(name, 100, 10, 10, 10, 1, 0, 100, [], "none", 0)
+    save_player_data(player1, 'player_data.csv')
+    print("Hello " + player1.name)
+    return player1
 
-#function to load a player
-def load_player():
-    name = input("Your name: ")
-    player = player(name)
-    #load player stats from a file
-    return player
 
-#function to save a player
-def save_player(player):
-    #save player stats to a file
-    return
+#credits function
+def credits():
+    print("Made by @Loocist23 on github")
 
-#function to show the main menu
-def main_menu():
-    print("Welcome to the game!")
-    print("1. New game")
-    print("2. Load game")
-    print("3. Exit")
-    choice = input("Your choice: ")
-    if choice == "1":
-        player = new_player()
-        return player
-    elif choice == "2":
-        player = load_player()
-        return player
-    elif choice == "3":
-        return
-    else:
-        print("Invalid input!")
-        main_menu()
 
-#function to show the game menu
-def game_menu(player):
-    print("1. Show stats")
-    print("2. Show inventory")
-    print("3. Save game")
-    print("4. Exit")
-    choice = input("Your choice: ")
-    if choice == "1":
-        player.show_stats()
-        game_menu(player)
-    elif choice == "2":
-        player.show_inventory()
-        game_menu(player)
-    elif choice == "3":
-        save_player(player)
-        game_menu(player)
-    elif choice == "4":
-        return
-    else:
-        print("Invalid input!")
-        game_menu(player)
-
-#function to show the forest
-def forest():
-    print("Forest:")
+#game function
+def game(player1):
+    print("Hello " + player1.name)
+    print("What do you want to do?")
     print("1. Fight")
-    print("2. Back")
+    print("2. Inventory")
+    print("3. Stats")
+    print("4. Save")
+    print("5. Exit")
     choice = input("Your choice: ")
     if choice == "1":
-        enemy = enemy("Goblin", 100, 10, 10, 10, 1, ["Sword", "Shield", "Potion"])
-        fight(player, enemy)
-        forest()
+        enemy1 = enemy("goblin")
+        fight(player1, enemy1)
     elif choice == "2":
-        return
-    else:
-        print("Invalid input!")
-        forest()
-
-
-#function to show the map
-def show_map():
-    print("Map:")
-    print("1. Forest")
-    print("2. Cave ''Coming soon!'")
-    print("3. Desert ''Coming soon!'")
-    print("4. Mountain ''Coming soon!'")
-    print("5. Back")
-    choice = input("Your choice: ")
-    if choice == "1":
-        forest()
+        player1.show_inventory()
+    elif choice == "3":
+        player1.show_stats()
+    elif choice == "4":
+        save_player_data(player1, 'player_data.csv')
     elif choice == "5":
-        return
+        print("Bye!")
+        exit()
     else:
         print("Invalid input!")
-        show_map()
 
 
-########################################################################################################################################################
 
-#main code
-
-#show the main menu
-player = main_menu()
-
-#show the game menu
-game_menu(player)
-
-#show the map
-show_map()
 
 #made by @Loocist23 on github
 ########################################################################################################################################################
+
+#main
+print("Welcome to the game!")
+print("What do you want to do?")
+print("1. New game")
+print("2. Credits")
+print("3. Exit")
+choice = input("Your choice: ")
+if choice == "1":
+    player1 = new_game()
+elif choice == "2":
+    credits()
+elif choice == "3":
+    exit()
+else:
+    print("Invalid input!")
+
+while True:
+    game(player1)
+
+
