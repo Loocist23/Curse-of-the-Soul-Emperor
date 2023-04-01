@@ -36,6 +36,9 @@ class player:
 
     def defend(self, enemy):
         self.defense -= enemy.damage
+
+    def heal(self, amount):
+        self.health += amount
     
     def level_up(self):
         self.level += 1

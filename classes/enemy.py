@@ -19,7 +19,8 @@ class enemy:
             "defense": 10,
             "speed": 10,
             "level": 1,
-            "drop": ["sword", "shield", "potion"]
+            "drop": ["sword", "shield", "potion"],
+            "xp_drop": random.randint(10, 30)
         },
         "orc": {
             "name": "Orc",
@@ -28,9 +29,29 @@ class enemy:
             "defense": 20,
             "speed": 20,
             "level": 2,
-            "drop": ["sword", "shield", "potion"]
+            "drop": ["sword", "shield", "potion"],
+            "xp_drop": random.randint(30, 60)
         },
-
+        "troll": {
+            "name": "Troll",
+            "health": 300,
+            "damage": 30,
+            "defense": 30,
+            "speed": 30,
+            "level": 3,
+            "drop": ["sword", "shield", "potion"],
+            "xp_drop": random.randint(60, 90)
+        },
+        "baby_dragon": {
+            "name": "Baby_Dragon",
+            "health": 1000,
+            "damage": 100,
+            "defense": 100,
+            "speed": 100,
+            "level": 4,
+            "drop": ["sword", "shield", "potion"],
+            "xp_drop": random.randint(90, 220)
+        },
 
     }
 

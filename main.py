@@ -37,6 +37,7 @@ type of enemies:
 - spider
 - wolf
 - bear
+- baby dragon
 - dragon
 - demon
 - angel
@@ -116,15 +117,24 @@ def fight(player, enemy):
         print("What do you want to do?")
         print("1. Attack")
         print("2. Defend")
-        print("3. Run")
+        print("3. Heal")
+        print("4. Run")
         choice = input("Your choice: ")
         if choice == "1":
-            player.attack(enemy)
-            enemy.attack(player)
+            # Calculate chance of enemy evading the attack
+            level_diff = enemy.level - player.level
+            evasion_chance = max(0, min(50, level_diff * 5 + enemy.speed - player.speed))
+            if random.randint(1, 100) <= evasion_chance:
+                print(enemy.name + " evaded your attack!")
+            else:
+                player.attack(enemy)
+                enemy.attack(player)
         elif choice == "2":
             player.defend(enemy)
             enemy.attack(player)
         elif choice == "3":
+            player.heal()
+        elif choice == "4":
             #there is a small chance that you will not be able to run away
             if random.randint(0, 100) > random.randint(0, 50):
                 print("You ran away!")
@@ -196,7 +206,8 @@ def game(player1):
     print("5. Exit")
     choice = input("Your choice: ")
     if choice == "1":
-        enemy1 = enemy("goblin")
+        #we will create an enemy choosen from a dict in the anemy class
+        enemy1 = enemy(random.choice(list(enemy.enemies.keys())))
         fight(player1, enemy1)
     elif choice == "2":
         player1.show_inventory()
