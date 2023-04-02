@@ -175,7 +175,7 @@ def load_player_data(filename):
         reader = csv.DictReader(f)
         player_data = next(reader)
         player_obj = player(**player_data) # renommer la variable pour éviter la confusion
-        #on check si les stats du joueur sont au bon format name(str), health(int), attack(int), defense(int), speed(int), level(int), xp(int), max_health(int), inventory([]), equipped_item([]), gold(int)
+        #check if the data is correct
         if type(player_obj.name) != str:
             player_obj.name = str(player_obj.name)
         if type(player_obj.health) != int:
