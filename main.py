@@ -133,7 +133,7 @@ def fight(player, enemy):
             player.defend(enemy)
             enemy.attack(player)
         elif choice == "3":
-            player.heal()
+            player.heal(10)
         elif choice == "4":
             #there is a small chance that you will not be able to run away
             if random.randint(0, 100) > random.randint(0, 50):
@@ -175,6 +175,29 @@ def load_player_data(filename):
         reader = csv.DictReader(f)
         player_data = next(reader)
         player_obj = player(**player_data) # renommer la variable pour éviter la confusion
+        #on check si les stats du joueur sont au bon format name(str), health(int), attack(int), defense(int), speed(int), level(int), xp(int), max_health(int), inventory([]), equipped_item([]), gold(int)
+        if type(player_obj.name) != str:
+            player_obj.name = str(player_obj.name)
+        if type(player_obj.health) != int:
+            player_obj.health  = int(player_obj.health)
+        if type(player_obj.damage) != int:
+            player_obj.damage = int(player_obj.damage)
+        if type(player_obj.defense) != int:
+            player_obj.defense = int(player_obj.defense)
+        if type(player_obj.speed) != int:
+            player_obj.speed = int(player_obj.speed)
+        if type(player_obj.level) != int:
+            player_obj.level = int(player_obj.level)
+        if type(player_obj.xp) != int:
+            player_obj.xp = int(player_obj.xp)
+        if type(player_obj.max_health) != int:
+            player_obj.max_health = int(player_obj.max_health)
+        if type(player_obj.inventory) != list:
+            player_obj.inventory = list(player_obj.inventory)
+        if type(player_obj.gold) != int:
+            player_obj.gold = int(player_obj.gold)
+        if type(player_obj.xp_to_next_level) != int:
+            player_obj.xp_to_next_level = int(player_obj.xp_to_next_level)
         return player_obj
 
 
@@ -200,22 +223,25 @@ def game(player1):
     print("Hello " + player1.name)
     print("What do you want to do?")
     print("1. Fight")
-    print("2. Inventory")
-    print("3. Stats")
-    print("4. Save")
-    print("5. Exit")
+    print("2. Heal")
+    print("3. Inventory")
+    print("4. Stats")
+    print("5. Save")
+    print("6. Exit")
     choice = input("Your choice: ")
     if choice == "1":
         #we will create an enemy choosen from a dict in the anemy class
         enemy1 = enemy(random.choice(list(enemy.enemies.keys())))
         fight(player1, enemy1)
     elif choice == "2":
-        player1.show_inventory()
+        player1.heal(10)    
     elif choice == "3":
-        player1.show_stats()
+        player1.show_inventory()
     elif choice == "4":
-        save_player_data(player1, 'player_data.csv')
+        player1.show_stats()
     elif choice == "5":
+        save_player_data(player1, 'player_data.csv')
+    elif choice == "6":
         print("Bye!")
         exit()
     else:
@@ -237,8 +263,10 @@ choice = input("Your choice: ")
 if choice == "1":
     player1 = new_game()
 elif choice == "2":
-    credits()
+    player1 = load_player_data('player_data.csv')
 elif choice == "3":
+    credits()
+elif choice == "4":
     exit()
 else:
     print("Invalid input!")

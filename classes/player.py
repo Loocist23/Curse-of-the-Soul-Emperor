@@ -4,6 +4,7 @@ class player:
     #player variables
     name = ""
     health = 100
+    max_health = 100
     damage = 10
     defense = 10
     speed = 10
@@ -13,6 +14,7 @@ class player:
     inventory = []
     speciality = ""
     competence_points = 0
+    gold = 0
 
     #player functions
     def __init__(self, name, health, damage, defense, speed, level, xp, xp_to_next_level, inventory, speciality, competence_points):
@@ -28,17 +30,18 @@ class player:
         self.speciality = speciality
         self.competence_points = competence_points
 
-    def get_damage(self, enemy):
-        return self.damage - enemy.defense
 
     def attack(self, other):
         other.health -= self.damage
+        if other.health < 0:
+            other.health = 0
 
     def defend(self, enemy):
         self.defense -= enemy.damage
 
     def heal(self, amount):
         self.health += amount
+        print("You healed for " + str(amount) + " points. Your health is now " + str(self.health))
     
     def level_up(self):
         self.level += 1

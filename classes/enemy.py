@@ -69,6 +69,8 @@ class enemy:
     
     def attack(self, other):
         other.health -= self.damage
+        if other.health < 0:
+            other.health = 0
 
     def defend(self, other):
         self.defense -= other.damage
